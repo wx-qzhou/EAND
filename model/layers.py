@@ -212,7 +212,7 @@ class GraphAttentionWithEdgeConcat(Module):
     def forward_(self, node, adj):
         # node : (N, M); adj : (N, N)
         node = self.node_attention(node, adj) # (N, M)
-        adj = self.adj_attention(adj) # (N, N) # 只有该注意力机制存在对于模型的结果提高 73.96% - 72.95% = 1.01%
+        adj = self.adj_attention(adj) # (N, N) 
         node = torch.spmm(adj, node) # (N, M)
         del adj
         return node # (N, M)
